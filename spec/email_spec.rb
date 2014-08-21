@@ -33,4 +33,16 @@ RSpec.describe Email do
       expect(email.verified?).to be_truthy
     end
   end
+
+  describe "#to_s" do
+    it "should return the email string" do
+      email = Email.new "test@deranged.dk"
+      expect(email.to_s).to eq("test@deranged.dk")
+    end
+
+    it "should be printed as the email string" do
+      email = Email.new "test@deranged.dk"
+      expect("Send #{email} an email").to eq("Send test@deranged.dk an email")
+    end
+  end
 end
