@@ -1,4 +1,4 @@
-![passwordless logo](https://github.com/derangeddk/passwordless/raw/master/src/logo.png)
+![passwordless logo](https://raw.githubusercontent.com/derangeddk/passwordless/master/logo.png)
 
 passwordless
 ============
