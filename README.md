@@ -1,3 +1,8 @@
+![passwordless logo](https://github.com/derangeddk/passwordless/raw/master/src/logo.png)
+
+passwordless
+============
+
 > You shall not password
 
 > Do or do not, there is no password
