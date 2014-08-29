@@ -16,4 +16,8 @@ class MemoryIdentityStore
       raise "Checked for identity must be either a string or an identity"
     end
   end
+
+  def get(name)
+    @data[name] ||= raise "No such identity found (#{name})"
+  end
 end

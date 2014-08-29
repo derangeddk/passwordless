@@ -22,4 +22,13 @@ RSpec.describe MemoryIdentityStore do
       expect(store.include? "hypesystem").to be_truthy
     end
   end
+
+  describe "#get" do
+    it "returns the identity with the specified name" do
+      store = MemoryIdentityStore.new
+      identity = Identity.new "hypesystem"
+      store.save identity
+      expect(store.get "hypesystem").to eq(identity)
+    end
+  end
 end

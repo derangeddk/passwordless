@@ -5,9 +5,22 @@ class Identity
     end
 
     @username = username
+    @pending_actions = []
   end
 
   def to_s
     @username
+  end
+
+  def verified?
+    false
+  end
+
+  def add_pending_action(action)
+    @pending_actions.push(action)
+  end
+
+  def pending_actions
+    @pending_actions
   end
 end

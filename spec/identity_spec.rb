@@ -1,4 +1,5 @@
 require_relative "../src/identity.rb"
+require_relative "../src/creation_action.rb"
 
 RSpec.describe Identity do
   describe "#new" do
@@ -23,6 +24,11 @@ RSpec.describe Identity do
     it "can not be empty" do
       expect { Identity.new "" }.to raise_error
     end
+
+    it "is created as unverified" do
+      identity = Identity.new "hypesystem"
+      expect(identity.verified?).to be_falsy
+    end
   end
 
   describe "#to_s" do
@@ -34,6 +40,16 @@ RSpec.describe Identity do
     it "is printed like the username if used inline" do
       identity = Identity.new "hypesystem"
       expect("Look out! #{identity} waved.").to eq("Look out! hypesystem waved.")
+    end
+  end
+
+  describe "#add_pending_action" do
+    it "adds a pending action to the identity" do
+      identity = Identity.new "hypesystem"
+      action = CreationAction.new
+
+      identity.add_pending_action action
+      expect(identity.pending_actions.last).to be_a(CreationAction)
     end
   end
 end
