@@ -6,6 +6,7 @@ class Identity
 
     @username = username
     @pending_actions = []
+    @verified = false
   end
 
   def to_s
@@ -13,7 +14,11 @@ class Identity
   end
 
   def verified?
-    false
+    @verified
+  end
+
+  def verify
+    @verified = true
   end
 
   def add_pending_action(action)

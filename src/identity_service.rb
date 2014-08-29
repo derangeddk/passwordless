@@ -5,7 +5,7 @@ class IdentityService
 
   def create_identity(id_name, id_email)
     identity = Identity.new id_name
-    identity.add_pending_action CreationAction.new
+    identity.add_pending_action(CreationAction.new "")
     @store.save(identity)
   end
 end

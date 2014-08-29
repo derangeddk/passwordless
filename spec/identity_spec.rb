@@ -46,10 +46,18 @@ RSpec.describe Identity do
   describe "#add_pending_action" do
     it "adds a pending action to the identity" do
       identity = Identity.new "hypesystem"
-      action = CreationAction.new
+      action = CreationAction.new ""
 
       identity.add_pending_action action
       expect(identity.pending_actions.last).to be_a(CreationAction)
+    end
+  end
+
+  describe "#verify" do
+    it "marks the identity as verified" do
+      identity = Identity.new "hypesystem"
+      identity.verify
+      expect(identity.verified?).to be_truthy
     end
   end
 end
