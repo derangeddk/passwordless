@@ -11,8 +11,15 @@ RSpec.describe MemoryIdentityStore do
     it "returns true if the identity has been added" do
       store = MemoryIdentityStore.new
       identity = Identity.new "hypesystem"
-      store.add identity
+      store.save identity
       expect(store.include? identity).to be_truthy
+    end
+
+    it "returns true if the given string matches the name of an identity" do
+      store = MemoryIdentityStore.new
+      identity = Identity.new "hypesystem"
+      store.save identity
+      expect(store.include? "hypesystem").to be_truthy
     end
   end
 end
