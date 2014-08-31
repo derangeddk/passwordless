@@ -1,3 +1,6 @@
+require_relative "identity.rb"
+require_relative "creation_action.rb"
+
 class IdentityService
   def initialize(store, mailer)
     @store = store
