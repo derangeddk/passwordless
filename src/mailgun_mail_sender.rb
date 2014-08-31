@@ -7,10 +7,15 @@ class MailgunMailSender
   end
 
   def send(to, subject, text)
-    response = RestClient.post @url,
-      :from => @from,
-      :to => to,
-      :subject => subject,
-      :text => text
+    begin
+      RestClient.post @url,
+        :from => @from,
+        :to => to,
+        :subject => subject,
+        :text => text
+      true
+    rescue
+      false
+    end
   end
 end
