@@ -10,7 +10,7 @@ RSpec.describe HashMessageStore do
         }
       })
 
-      msg = store.get_email_message(:creation)
+      msg = store.get_email_template(:creation)
       expect(msg[:subject]).to eq("Creation")
       expect(msg[:message]).to eq("Content...")
     end
@@ -23,7 +23,7 @@ RSpec.describe HashMessageStore do
         }
       })
       
-      expect { store.get_email_message(:other) }.to raise_error
+      expect { store.get_email_template(:other) }.to raise_error
     end
   end
 end
