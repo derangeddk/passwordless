@@ -6,6 +6,7 @@ require_relative "../../src/identity_service.rb"
 
 class PasswordlessLocalWorld
   def initialize
+    config = get_config
     identity_store = MemoryIdentityStore.new
     message_store = HashMessageStore.new({
       :creation => {
@@ -14,10 +15,21 @@ class PasswordlessLocalWorld
       }
     })
 
-    mail_sender = MailgunMailSender.new "key-3ax6xnjp29jd6fds4gc373sgvjxteol0", "samples.mailgun.org", "integration test <integration-test@deranged.dk>"
+    mail_sender = MailgunMailSender.new config["mailgun"]["api_key"], config["mailgun"]["domain"], "integration test <integration-test@deranged.dk>"
     emailer = Emailer.new mail_sender, message_store
 
     @identity_service = IdentityService.new identity_store, emailer 
+  end
+
+  def get_config
+    test_config_exists = File.exist?("test_config.json")
+    unless test_config_exists
+      unless File.exists?("example_config.json")
+        raise "No config file found"
+      end
+    end
+    config_file = test_config_exists ? File.read("test_config.json") : File.read("example_config.json")
+    JSON.parse(config_file)
   end
 
   def identity_service
