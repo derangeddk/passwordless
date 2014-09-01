@@ -7,7 +7,7 @@ require_relative "../../src/identity_service.rb"
 class PasswordlessLocalWorld
   def initialize
     config = get_config
-    identity_store = MemoryIdentityStore.new
+    @identity_store = MemoryIdentityStore.new
     message_store = HashMessageStore.new({
       :creation => {
         :subject => "Verify your email to create an identity",
@@ -34,6 +34,10 @@ class PasswordlessLocalWorld
 
   def identity_service
     @identity_service
+  end
+
+  def identity_from_email(email)
+    @identity_store.find(|i| i.email.to_s == email)
   end
 end
 
